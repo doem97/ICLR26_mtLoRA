@@ -46,7 +46,7 @@ Official implementation of **mtLoRA** (**m**ulti-**t**ask **LoRA**) from the pap
 ## 🤖 AI Agent Reproduction
 
 > **One-click experiment reproduction powered by [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview).**
-> Open this project in [Cursor](https://www.cursor.com/) or the Claude Code CLI — the agent reads [`CLAUDE.md`](CLAUDE.md) and handles environment setup, data download, and experiment execution automatically.
+> Open this project in [Cursor](https://www.cursor.com/) or install the [Claude Code CLI](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#installation) — the agent reads [`CLAUDE.md`](CLAUDE.md) and handles environment setup, data download, and experiment execution automatically.
 
 ```
 💬 "Help me reproduce Table 2 on my 2× L40 setup"
