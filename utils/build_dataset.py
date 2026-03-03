@@ -10,7 +10,7 @@ from datasets import concatenate_datasets, load_dataset
 
 IGNORE_INDEX = -100
 
-logger = logging.getLogger("__name__")
+logger = logging.getLogger(__name__)
 
 PROMPT_TEMPLATE = "{instruction}</s>"
 

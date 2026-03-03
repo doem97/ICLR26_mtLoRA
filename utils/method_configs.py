@@ -150,7 +150,7 @@ class MMOELoRASConfig(BaseMethodConfig):
 
 
 @dataclass
-class AdaLoRAConfig(BaseMethodConfig):
+class AdaLoRAMethodConfig(BaseMethodConfig):
     """Configuration for Adaptive LoRA."""
 
     method_name: str = field(default="adalora", init=False)
@@ -189,7 +189,7 @@ METHOD_CONFIGS = {
     "mtlora": HydraLoRAConfig,  # mtlora is an alias for hydralora
     "mmoelora": MMOELoRAConfig,
     "mmoeloras": MMOELoRASConfig,
-    "adalora": AdaLoRAConfig,
+    "adalora": AdaLoRAMethodConfig,
 }
 
 

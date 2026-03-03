@@ -467,116 +467,71 @@ class LoraLinear(nn.Linear, LoraLayer):
             return torch.tensor([0], device=x.device, dtype=x.dtype)[0]
         return x.float().var() / (x.float().mean() ** 2 + eps)
 
-    def forward(self, x: torch.Tensor, task_types=None):  # WARN: why this task_types not used?
+    def forward(self, x: torch.Tensor, task_types=None):
         if self.disable_adapters:
             weight = transpose(self.weight, self.fan_in_fan_out)
-            # Ensure weight has the same dtype as input
             if weight.dtype != x.dtype:
                 weight = weight.to(x.dtype)
             result = F.linear(x, weight, bias=self.bias)
-            raise ImportError(":(")
+            return result
         elif self.r > 0 and not self.merged:
             weight = transpose(self.weight, self.fan_in_fan_out)
-            # Ensure weight has the same dtype as input
             if weight.dtype != x.dtype:
                 weight = weight.to(x.dtype)
             result = F.linear(x, weight, bias=self.bias)
 
-            if self.r > 0:
-                # Ensure input to routing layer has correct dtype
-                x_for_route = x.to(self.lora_route.weight.dtype) if hasattr(self.lora_route, "weight") else x
-                route_logits = self.lora_route(x_for_route)
+            x_for_route = x.to(self.lora_route.weight.dtype) if hasattr(self.lora_route, "weight") else x
+            route_logits = self.lora_route(x_for_route)
 
-                if self.enable_fine_grained_routing:
-                    # Fine-grained routing: dimension-wise weights
-                    # route_logits shape: [batch, seq_len, lora_num * num_groups]
-                    # Reshape to [batch, seq_len, num_groups, lora_num]
-                    batch_size = route_logits.shape[0]
-                    if len(route_logits.shape) == 3:
-                        seq_len = route_logits.shape[1]
-                        route_logits = route_logits.view(batch_size, seq_len, self.num_groups, self.lora_num)
-                    else:  # 2D tensor
-                        route_logits = route_logits.view(batch_size, self.num_groups, self.lora_num)
-
-                    # Softmax over lora_num dimension
-                    route_weight = nn.functional.softmax(route_logits, dim=-1, dtype=torch.float32).to(result.dtype)
-
-                    # Compute LoRA outputs for all experts
-                    x_for_lora = x.to(self.lora_A.weight.dtype) if hasattr(self.lora_A, "weight") else x
-                    lora_a_output = self.lora_A(self.lora_dropout(x_for_lora))  # [batch, seq_len, r]
-
-                    for i in range(self.lora_num):
-                        # Get dimension-wise weights for expert i
-                        # route_weight shape: [batch, seq_len, num_groups, lora_num]
-                        if len(route_weight.shape) == 4:
-                            weight_i = route_weight[:, :, :, i]  # [batch, seq_len, num_groups]
-                            # Repeat each weight for routing_group_size dimensions
-                            weight_i = weight_i.repeat_interleave(
-                                self.routing_group_size, dim=-1
-                            )  # [batch, seq_len, out_features]
-                            # No unsqueeze needed - element-wise multiplication
-                        else:  # 3D tensor
-                            weight_i = route_weight[:, :, i]  # [batch, num_groups]
-                            weight_i = weight_i.repeat_interleave(
-                                self.routing_group_size, dim=-1
-                            )  # [batch, out_features]
-                            # No unsqueeze needed - element-wise multiplication
-
-                        # Apply expert-specific B matrix
-                        lora_b_output = getattr(self, f"lora_B{i}")(lora_a_output)  # [batch, seq_len, out_features]
-                        # Element-wise multiplication with dimension-specific weights
-                        # weight_i and lora_b_output have same shape, so direct element-wise mult works
-                        result = result + (weight_i * lora_b_output * self.scaling)
+            if self.enable_fine_grained_routing:
+                # Fine-grained routing: dimension-wise weights
+                # route_logits: [batch, seq_len, lora_num * num_groups] -> [batch, seq_len, num_groups, lora_num]
+                batch_size = route_logits.shape[0]
+                if len(route_logits.shape) == 3:
+                    seq_len = route_logits.shape[1]
+                    route_logits = route_logits.view(batch_size, seq_len, self.num_groups, self.lora_num)
                 else:
-                    # Standard scalar routing
-                    route_weight = nn.functional.softmax(route_logits, dim=-1, dtype=torch.float32).to(result.dtype)
+                    route_logits = route_logits.view(batch_size, self.num_groups, self.lora_num)
 
-                    for i in range(self.lora_num):
-                        # Handle different tensor dimensions (2D or 3D)
-                        if len(route_weight.shape) == 3:
-                            weight_i = route_weight[:, :, i].unsqueeze(-1)
-                        else:  # 2D tensor
-                            weight_i = route_weight[:, i].unsqueeze(-1)
+                route_weight = nn.functional.softmax(route_logits, dim=-1, dtype=torch.float32).to(result.dtype)
 
-                        # Ensure input to LoRA A layer has correct dtype
-                        x_for_lora = x.to(self.lora_A.weight.dtype) if hasattr(self.lora_A, "weight") else x
-                        result = (
-                            result
-                            + weight_i
-                            * getattr(self, f"lora_B{i}")(self.lora_A(self.lora_dropout(x_for_lora)))
-                            * self.scaling
-                        )
+                x_for_lora = x.to(self.lora_A.weight.dtype) if hasattr(self.lora_A, "weight") else x
+                lora_a_output = self.lora_A(self.lora_dropout(x_for_lora))
 
-                # Calculate BLC only if explicitly enabled
-                if self.enable_blc and self.training:
-                    # 正确计算平衡损失系数 - HydraLoRA 的核心功能
-                    # 基于路由权重的变异系数，鼓励专家使用的均匀分布
-                    # 对除最后一维(lora_num)外的所有维度取平均，适用于 2D/3D/4D
-                    blc = self.cv_squared(route_weight.mean(dim=tuple(range(len(route_weight.shape) - 1))))
-                    # NOTE: 以下旧代码对 FGR=True 的 4D 张量处理错误，已修复 # WARN: This patch fix need check
-                    # if len(route_weight.shape) == 3:
-                    #     blc = self.cv_squared(route_weight.mean(dim=(0, 1)))
-                    # else:
-                    #     blc = self.cv_squared(route_weight.mean(dim=0))
+                for i in range(self.lora_num):
+                    if len(route_weight.shape) == 4:
+                        weight_i = route_weight[:, :, :, i]
+                        weight_i = weight_i.repeat_interleave(self.routing_group_size, dim=-1)
+                    else:
+                        weight_i = route_weight[:, :, i]
+                        weight_i = weight_i.repeat_interleave(self.routing_group_size, dim=-1)
 
-                    # Log balance loss periodically (every 100 forward passes)
-                    if not hasattr(self, "_forward_count"):
-                        self._forward_count = 0
-                    self._forward_count += 1
-
-                    if self._forward_count % 100 == 0:
-                        import logging
-
-                        logger = logging.getLogger(__name__)
-                        logger.debug(
-                            f"[BLC] Layer {self.__class__.__name__}: balance_loss={blc.item():.6f}, forward_count={self._forward_count}"
-                        )
-                else:
-                    # BLC disabled - no computation at all
-                    blc = None
+                    lora_b_output = getattr(self, f"lora_B{i}")(lora_a_output)
+                    result = result + (weight_i * lora_b_output * self.scaling)
             else:
-                # BLC disabled or no routing - no computation
-                blc = None if not self.enable_blc else torch.zeros(1, device=result.device, dtype=result.dtype)[0]
+                # Standard scalar routing
+                route_weight = nn.functional.softmax(route_logits, dim=-1, dtype=torch.float32).to(result.dtype)
+
+                for i in range(self.lora_num):
+                    if len(route_weight.shape) == 3:
+                        weight_i = route_weight[:, :, i].unsqueeze(-1)
+                    else:
+                        weight_i = route_weight[:, i].unsqueeze(-1)
+
+                    x_for_lora = x.to(self.lora_A.weight.dtype) if hasattr(self.lora_A, "weight") else x
+                    result = (
+                        result
+                        + weight_i
+                        * getattr(self, f"lora_B{i}")(self.lora_A(self.lora_dropout(x_for_lora)))
+                        * self.scaling
+                    )
+
+            # Calculate BLC only if explicitly enabled
+            if self.enable_blc and self.training:
+                # Average over all dims except the last (lora_num), works for 2D/3D/4D route_weight
+                blc = self.cv_squared(route_weight.mean(dim=tuple(range(len(route_weight.shape) - 1))))
+            else:
+                blc = None
         else:
             weight = transpose(self.weight, self.fan_in_fan_out)
             # Ensure weight has the same dtype as input

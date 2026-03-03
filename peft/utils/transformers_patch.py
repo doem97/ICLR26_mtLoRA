@@ -490,7 +490,7 @@ def patch_llama_for_hydralora():
     LlamaModel.forward = patched_model_forward
     LlamaForCausalLM.forward = patched_causal_lm_forward
 
-    print("✓ HydraLoRA transformers patches applied successfully")
+    print("[OK] HydraLoRA transformers patches applied successfully")
     print("  - LlamaMLP.forward() now supports task routing")
     print(f"  - Attention.forward() passes task_id to projection layers ({len(attention_classes)} variants patched)")
     print("  - LlamaDecoderLayer.forward() propagates task_id")
@@ -611,7 +611,7 @@ def inject_block_adapters(model, adapter_config):
                 layer.mlp.block_adapter = adapter
                 injected_count += 1
 
-    print(f"✓ Block-level adapters injected: {injected_count} adapters")
+    print(f"[OK] Block-level adapters injected: {injected_count} adapters")
     print(f"  - Type: {adapter_type}, Style: {adapter_style}")
     print(f"  - Rank: {rank}, Experts: {num_experts}")
     if adapter_style == "adaptformer":
@@ -715,6 +715,6 @@ def patch_llama_for_block_adapters():
         attn_class.forward = patched_attention_with_adapter
     LlamaMLP.forward = patched_mlp_with_adapter
 
-    print("✓ Block-level adapter patches applied")
+    print("[OK] Block-level adapter patches applied")
     print(f"  - Attention forward patched ({len(attention_classes)} variants)")
     print("  - MLP forward patched")

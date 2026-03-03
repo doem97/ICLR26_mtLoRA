@@ -98,7 +98,7 @@ class SavePeftModelCallback(transformers.TrainerCallback):
             tokenizer_to_save.save_pretrained(peft_model_path)
         else:
             logger.warning(
-                "Model or tokenizer not available inSavePeftModelCallback kwargs during on_train_end."
+                "Model or tokenizer not available in SavePeftModelCallback kwargs during on_train_end."
             )
 
 
