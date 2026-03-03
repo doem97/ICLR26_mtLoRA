@@ -1,0 +1,78 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "high_school_mathematics",
+  "dataset_name": "mmlu",
+  "dataset_size": 70127,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_mathematics/test-00000-of-00001.parquet": {
+      "num_bytes": 33722,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_mathematics/validation-00000-of-00001.parquet": {
+      "num_bytes": 6987,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_mathematics/dev-00000-of-00001.parquet": {
+      "num_bytes": 4501,
+      "checksum": null
+    }
+  },
+  "download_size": 45210,
+  "features": {
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "subject": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "choices": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "answer": {
+      "names": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "_type": "ClassLabel"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 115337,
+  "splits": {
+    "test": {
+      "name": "test",
+      "num_bytes": 62166,
+      "num_examples": 270,
+      "dataset_name": "mmlu"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 6540,
+      "num_examples": 29,
+      "dataset_name": "mmlu"
+    },
+    "dev": {
+      "name": "dev",
+      "num_bytes": 1421,
+      "num_examples": 5,
+      "dataset_name": "mmlu"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

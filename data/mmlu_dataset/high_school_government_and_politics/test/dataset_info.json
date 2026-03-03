@@ -1,0 +1,78 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "high_school_government_and_politics",
+  "dataset_name": "mmlu",
+  "dataset_size": 83450,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_government_and_politics/test-00000-of-00001.parquet": {
+      "num_bytes": 40219,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_government_and_politics/validation-00000-of-00001.parquet": {
+      "num_bytes": 8269,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_government_and_politics/dev-00000-of-00001.parquet": {
+      "num_bytes": 4475,
+      "checksum": null
+    }
+  },
+  "download_size": 52963,
+  "features": {
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "subject": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "choices": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "answer": {
+      "names": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "_type": "ClassLabel"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 136413,
+  "splits": {
+    "test": {
+      "name": "test",
+      "num_bytes": 73614,
+      "num_examples": 193,
+      "dataset_name": "mmlu"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 7873,
+      "num_examples": 21,
+      "dataset_name": "mmlu"
+    },
+    "dev": {
+      "name": "dev",
+      "num_bytes": 1963,
+      "num_examples": 5,
+      "dataset_name": "mmlu"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

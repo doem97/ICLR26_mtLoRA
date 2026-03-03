@@ -1,0 +1,78 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "jurisprudence",
+  "dataset_name": "mmlu",
+  "dataset_size": 41107,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/jurisprudence/test-00000-of-00001.parquet": {
+      "num_bytes": 23324,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/jurisprudence/validation-00000-of-00001.parquet": {
+      "num_bytes": 6207,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/jurisprudence/dev-00000-of-00001.parquet": {
+      "num_bytes": 4047,
+      "checksum": null
+    }
+  },
+  "download_size": 33578,
+  "features": {
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "subject": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "choices": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "answer": {
+      "names": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "_type": "ClassLabel"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 74685,
+  "splits": {
+    "test": {
+      "name": "test",
+      "num_bytes": 35824,
+      "num_examples": 108,
+      "dataset_name": "mmlu"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 3906,
+      "num_examples": 11,
+      "dataset_name": "mmlu"
+    },
+    "dev": {
+      "name": "dev",
+      "num_bytes": 1377,
+      "num_examples": 5,
+      "dataset_name": "mmlu"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

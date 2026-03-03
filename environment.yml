@@ -1,0 +1,49 @@
+name: mtlora
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip
+  - ca-certificates
+  - certifi
+  
+  # Install most packages via pip for better compatibility
+  - pip:
+    # Core deep learning frameworks
+    - torch>=2.1.2
+    - transformers==4.36.2
+    - accelerate>=0.25.0
+    
+    # Data processing
+    - datasets>=2.14.5
+    - pandas>=2.0.0
+    - numpy>=1.26.0,<2.0.0
+    - scipy>=1.10.0
+    
+    # PEFT and training utilities
+    # Note: peft should be installed locally after environment setup
+    # Run: pip install -e ./peft
+    - deepspeed>=0.18.0
+    - einops>=0.8.0
+    - sentencepiece>=0.2.0
+    - protobuf>=4.0.0
+    - safetensors>=0.6.0
+    
+    # Utilities
+    - fire>=0.6.0
+    - tqdm>=4.66.0
+    - matplotlib>=3.8.0
+    
+    # Optional: Web UI and API
+    - gradio>=3.38.0,<4.0.0
+    - fastapi>=0.100.0
+    - uvicorn>=0.20.0
+    - pydantic>=2.0.0
+    - sse-starlette
+    
+    # HuggingFace Hub
+    - huggingface-hub>=0.36.0
+

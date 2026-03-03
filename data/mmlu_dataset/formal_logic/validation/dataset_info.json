@@ -1,0 +1,78 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "formal_logic",
+  "dataset_name": "mmlu",
+  "dataset_size": 60097,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/formal_logic/test-00000-of-00001.parquet": {
+      "num_bytes": 21515,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/formal_logic/validation-00000-of-00001.parquet": {
+      "num_bytes": 6562,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/formal_logic/dev-00000-of-00001.parquet": {
+      "num_bytes": 4807,
+      "checksum": null
+    }
+  },
+  "download_size": 32884,
+  "features": {
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "subject": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "choices": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "answer": {
+      "names": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "_type": "ClassLabel"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 92981,
+  "splits": {
+    "test": {
+      "name": "test",
+      "num_bytes": 51805,
+      "num_examples": 126,
+      "dataset_name": "mmlu"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 6466,
+      "num_examples": 14,
+      "dataset_name": "mmlu"
+    },
+    "dev": {
+      "name": "dev",
+      "num_bytes": 1826,
+      "num_examples": 5,
+      "dataset_name": "mmlu"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

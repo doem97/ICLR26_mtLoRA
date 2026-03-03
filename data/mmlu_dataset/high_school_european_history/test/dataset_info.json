@@ -1,0 +1,78 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "high_school_european_history",
+  "dataset_name": "mmlu",
+  "dataset_size": 317501,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_european_history/test-00000-of-00001.parquet": {
+      "num_bytes": 142465,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_european_history/validation-00000-of-00001.parquet": {
+      "num_bytes": 31594,
+      "checksum": null
+    },
+    "hf://datasets/cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe/high_school_european_history/dev-00000-of-00001.parquet": {
+      "num_bytes": 22211,
+      "checksum": null
+    }
+  },
+  "download_size": 196270,
+  "features": {
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "subject": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "choices": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "answer": {
+      "names": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "_type": "ClassLabel"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 513771,
+  "splits": {
+    "test": {
+      "name": "test",
+      "num_bytes": 275589,
+      "num_examples": 165,
+      "dataset_name": "mmlu"
+    },
+    "validation": {
+      "name": "validation",
+      "num_bytes": 30199,
+      "num_examples": 18,
+      "dataset_name": "mmlu"
+    },
+    "dev": {
+      "name": "dev",
+      "num_bytes": 11713,
+      "num_examples": 5,
+      "dataset_name": "mmlu"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

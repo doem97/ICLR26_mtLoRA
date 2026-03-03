@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+
+# Environments
+.venv/
+venv/
+.env
+
+# Training outputs
+output/
+logs/
+checkpoints/
+wandb/
+
+# Model files and weights
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+
+# Large data files (downloaded separately)
+data/flan_v2_subset/
+data/dolly-15k-converted/
+data/llama-2-7b
+data/llama-2-13b
+
+# Dataset cache
+*.arrow
+*.lock
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# HuggingFace cache
+.cache/
+.huggingface/
+
