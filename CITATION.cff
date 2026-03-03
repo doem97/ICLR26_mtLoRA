@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+title: "mtLoRA: Scalable Multi-Task Low-Rank Model Adaptation"
+message: "If you use this software, please cite our paper."
+type: software
+authors:
+  - given-names: Zichen
+    family-names: Tian
+    affiliation: Singapore Management University
+  - given-names: Antoine
+    family-names: Ledent
+    affiliation: Singapore Management University
+  - given-names: Qianru
+    family-names: Sun
+    affiliation: Singapore Management University
+url: "https://github.com/doem97/ICLR26_mtLoRA"
+repository-code: "https://github.com/doem97/ICLR26_mtLoRA"
+license: Apache-2.0
+preferred-citation:
+  type: conference-paper
+  title: "Scalable Multi-Task Low-Rank Model Adaptation"
+  authors:
+    - given-names: Zichen
+      family-names: Tian
+    - given-names: Antoine
+      family-names: Ledent
+    - given-names: Qianru
+      family-names: Sun
+  collection-title: "International Conference on Learning Representations (ICLR)"
+  year: 2026
+  url: "https://openreview.net/forum?id=L3RSb9yTlL"
+keywords:
+  - mtlora
+  - multi-task lora
+  - multi-task learning
+  - lora
+  - low-rank adaptation
+  - parameter-efficient fine-tuning
+  - peft
+  - scalable multi-task adaptation
+  - mixture of experts
+  - llama
+  - large language models
