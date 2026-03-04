@@ -79,8 +79,6 @@ Each design contributes meaningfully — block-level adaptation alone provides *
 |      ✓      |               |          ✓           | 39.8M (0.59%) |   44.1    |   38.2   |
 |      ✓      |       ✓       |          ✓           | 39.8M (0.59%) | **44.5**  | **38.5** |
 
-> 📌 mtLoRA also achieves consistent gains on vision benchmarks (91.7% on DOTA, 81.5% on iNat2018). Full cross-domain results in Table 5 of the paper. Vision code will be released separately.
-
 ---
 
 ## 🚀 Getting Started
