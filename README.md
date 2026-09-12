@@ -11,7 +11,7 @@
 <p>
   <img src="assets/smu_logo.png" height="55" alt="SMU Logo" />
   &emsp;&emsp;
-  <img src="assets/iclr_logo.svg" height="55" alt="ICLR Logo" />
+  <a href="https://iclr.cc/virtual/2026/poster/10010068"><img src="assets/iclr_logo.svg" height="55" alt="ICLR Logo" /></a>
 </p>
 
 <p>
@@ -20,6 +20,9 @@
   </a>
   <a href="https://arxiv.org/abs/2603.01526">
     <img src="https://img.shields.io/badge/📝%20ArXiv-2603.01526-b31b1b?style=flat-square" alt="ArXiv">
+  </a>
+  <a href="https://iclr.cc/virtual/2026/poster/10010068">
+    <img src="https://img.shields.io/badge/🎪%20ICLR%202026-Poster-1f6feb?style=flat-square" alt="ICLR 2026 poster page">
   </a>
   <img src="https://img.shields.io/badge/PyTorch-2.1-EE4C2C?style=flat-square&logo=pytorch" alt="PyTorch 2.1">
   <a href="#-ai-agent-reproduction">
