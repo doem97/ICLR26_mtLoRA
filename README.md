@@ -306,12 +306,15 @@ Official version: [ICLR 2026 Proceedings](https://proceedings.iclr.cc/paper_file
 If you find this work useful, please consider citing our paper:
 
 ```bibtex
-@inproceedings{tian2026mtlora,
-    title     = {Scalable Multi-Task Low-Rank Model Adaptation},
-    author    = {Tian, Zichen and Ledent, Antoine and Sun, Qianru},
-    booktitle = {International Conference on Learning Representations (ICLR)},
-    year      = {2026},
-    url       = {https://proceedings.iclr.cc/paper_files/paper/2026/hash/791de7c35bb49cfca56744e67f90eef4-Abstract-Conference.html}
+@inproceedings{ICLR2026_791de7c3,
+ author = {Tian, Zichen and Ledent, Antoine and Sun, Qianru},
+ booktitle = {International Conference on Learning Representations},
+ editor = {C. Vondrick and B. Hariharan and C. Raffel and L. Pinto and D. Yang and A. Faust},
+ pages = {74390--74410},
+ title = {Scalable Multi-Task Low-Rank Model Adaptation},
+ url = {https://proceedings.iclr.cc/paper_files/paper/2026/file/791de7c35bb49cfca56744e67f90eef4-Paper-Conference.pdf},
+ volume = {2026},
+ year = {2026}
 }
 ```
 
