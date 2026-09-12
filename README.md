@@ -15,6 +15,9 @@
 </p>
 
 <p>
+  <a href="https://www.doem1997.com/mtlora/">
+    <img src="https://img.shields.io/badge/Project_Page-doem1997.com-0f5fb3" alt="Project Page">
+  </a>
   <a href="https://openreview.net/forum?id=L3RSb9yTlL">
     <img src="https://img.shields.io/badge/📄%20Paper-OpenReview-8c1b13?style=flat-square" alt="Paper">
   </a>
@@ -34,6 +37,10 @@
 </p>
 
 </div>
+
+Project page with PDF, BibTeX and results: https://www.doem1997.com/mtlora/
+
+> **Note on the name.** mtLoRA (this repository; Tian, Ledent and Sun, ICLR 2026) is a different method from **MTLoRA** (Agiza, Neseem and Reda, CVPR 2024, https://github.com/scale-lab/MTLoRA), which targets dense multi-task scene understanding with task-specific and task-agnostic LoRA modules. This work studies *scaling* multi-task LoRA to 15–25 tasks via Spectral-Aware Regularization, Block-Level Adaptation and Fine-Grained Routing. Please cite the ICLR 2026 BibTeX below.
 
 Official implementation of **mtLoRA** (**m**ulti-**t**ask **LoRA**) from the paper **"Scalable Multi-Task Low-Rank Model Adaptation"** (ICLR 2026). Scaling multi-task LoRA to many tasks (15–25+) causes catastrophic performance collapse (e.g., 88.2% → 2.0% accuracy). We identify two root causes — *uniform regularization disrupts shared knowledge* and *component-level adaptation amplifies gradient conflicts* — and propose three novel designs:
 

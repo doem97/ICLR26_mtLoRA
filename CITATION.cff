@@ -12,9 +12,8 @@ authors:
   - given-names: Qianru
     family-names: Sun
     affiliation: Singapore Management University
-url: "https://github.com/doem97/ICLR26_mtLoRA"
+url: "https://www.doem1997.com/mtlora/"
 repository-code: "https://github.com/doem97/ICLR26_mtLoRA"
-license: Apache-2.0
 preferred-citation:
   type: conference-paper
   title: "Scalable Multi-Task Low-Rank Model Adaptation"
@@ -26,8 +25,18 @@ preferred-citation:
     - given-names: Qianru
       family-names: Sun
   collection-title: "International Conference on Learning Representations (ICLR)"
+  collection-type: proceedings
+  volume: 2026
   year: 2026
-  url: "https://openreview.net/forum?id=L3RSb9yTlL"
+  month: 4
+  start: 74390
+  end: 74410
+  url: "https://proceedings.iclr.cc/paper_files/paper/2026/hash/791de7c35bb49cfca56744e67f90eef4-Abstract-Conference.html"
+  identifiers:
+    - type: url
+      value: "https://openreview.net/forum?id=L3RSb9yTlL"
+    - type: other
+      value: "arXiv:2603.01526"
 keywords:
   - mtlora
   - multi-task lora
