@@ -5,6 +5,7 @@ type: software
 authors:
   - given-names: Zichen
     family-names: Tian
+    orcid: "https://orcid.org/0009-0004-5007-3352"
     affiliation: Singapore Management University
   - given-names: Antoine
     family-names: Ledent
@@ -20,6 +21,7 @@ preferred-citation:
   authors:
     - given-names: Zichen
       family-names: Tian
+      orcid: "https://orcid.org/0009-0004-5007-3352"
     - given-names: Antoine
       family-names: Ledent
     - given-names: Qianru
