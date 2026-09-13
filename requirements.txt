@@ -1,6 +1,6 @@
 # Core deep learning frameworks
 torch>=2.1.2
-transformers==4.36.2
+transformers==5.10.0
 accelerate>=0.25.0
 
 # Data processing
